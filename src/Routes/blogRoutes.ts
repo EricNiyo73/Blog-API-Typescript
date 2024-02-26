@@ -1,0 +1,11 @@
+import Router from "express";
+const router = Router();
+import { fileUpload } from "../helpers/multer";
+import authentication from "../Middlewares/mustHaveAccount";
+import BlogController from "../Controllers/blogController";
+router.post("/create", fileUpload.single("image"), BlogController.createblog);
+router.get("/", BlogController.findAllBlog);
+router.get("/:id", BlogController.findOneBlog);
+router.put("/:id", fileUpload.single("image"), BlogController.updateT);
+router.delete("/:id", authentication, BlogController.deleteT);
+export default router;
