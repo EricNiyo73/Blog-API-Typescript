@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import User, { UserDocument } from "../Models/userModel";
-import { validateUser } from "../Models/userModel";
+import { validateUser, validatelogin } from "../Models/userModel";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 export default class UserController {
   static async login(req: Request, res: Response) {
     try {
-      const { error } = validateUser(req.body);
+      const { error } = validatelogin(req.body);
       if (error) {
         return res.status(400).send(error.details[0].message);
       }

@@ -6,9 +6,9 @@ export default class MessageController {
   // ===================================================
   static async sendMessage(req: Request, res: Response) {
     try {
-      const { error } = validateMessage(req.body);
-      if (error) {
-        return res.status(400).send(error.details[0].message);
+      const valid = validateMessage(req.body);
+      if (valid.error) {
+        return res.status(400).send(valid.error);
       }
 
       const newmessage = new Message({

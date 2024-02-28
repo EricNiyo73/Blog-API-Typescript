@@ -2,7 +2,7 @@ import Router from "express";
 const router = Router();
 import { fileUpload } from "../helpers/multer";
 import authentication from "../Middlewares/mustHaveAccount";
-import BlogController from "../Controllers/blogController";
+import BlogController from "../Controllers/BlogController";
 router.post("/create", fileUpload.single("image"), BlogController.createblog);
 router.get("/", BlogController.findAllBlog);
 router.get("/:id", BlogController.findOneBlog);

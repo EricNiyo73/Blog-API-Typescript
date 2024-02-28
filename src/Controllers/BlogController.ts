@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { v2 as cloudinary } from "cloudinary";
 import Blog from "../Models/blogModel";
-import { UserDocument } from "../Models/userModel";
 import { validateBlog } from "../Models/blogModel";
 
 import dotenv from "dotenv";
@@ -12,13 +11,6 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: UserDocument;
-    }
-  }
-}
 export default class BlogController {
   //CREATE Blog
   static async createblog(req: Request, res: Response) {
@@ -27,11 +19,8 @@ export default class BlogController {
       if (error) {
         return res.status(400).send(error.details[0].message);
       }
-      // if (!req.user) {
-      //   return res.status(401).json({ message: "Unauthorized" });
-      // }
-      const existingBlogs = await Blog.findOne({ title: req.body.title });
-      if (existingBlogs) {
+      const existingBlog = await Blog.findOne({ title: req.body.title });
+      if (existingBlog) {
         return res.status(409).json({
           message: "This Blog already exists",
         });
@@ -41,25 +30,19 @@ export default class BlogController {
           message: "Please upload a file",
         });
       }
-      // return res.send("Please upload a file");
-      // console.log("Request: ", req);
-      console.log("Request File: ", req.file);
       const result = await cloudinary.uploader.upload(req.file.path);
       const newBlog = new Blog({
-        // author: req.user.fullName,
         title: req.body.title,
         description: req.body.description,
         image: result.secure_url,
       });
-
-      const saveBlog = await newBlog.save();
-
+      const savedBlog = await newBlog.save();
       return res.status(201).json({
-        saveBlog,
-        message: "your Blog was successfully added",
+        savedBlog,
+        message: "Your Blog was successfully added",
       });
     } catch (error) {
-      return res.status(500).json(error);
+      return res.status(500).json({ message: "Internal Server Error" });
     }
   }
 

@@ -5,6 +5,8 @@ import helmet from "helmet";
 import mongoose, { ConnectOptions } from "mongoose";
 import userRoute from "./Routes/userRoutes";
 import BlogRoute from "./Routes/blogRoutes";
+import CommentRoute from "./Routes/commentRoutes";
+
 import MessageRoute from "./Routes/messageRoutes";
 import bodyParser from "body-parser";
 
@@ -40,6 +42,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/api/users", userRoute);
 app.use("/api/blogs", BlogRoute);
 app.use("/api/message", MessageRoute);
+app.use("/api/com/like", CommentRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

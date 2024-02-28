@@ -20,7 +20,15 @@ const userSchema = Joi.object({
 export const validateUser = (data: UserDocument) => {
   return userSchema.validate(data);
 };
+// ===================login validation =================
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+});
 
+export const validatelogin = (data: UserDocument) => {
+  return loginSchema.validate(data);
+};
 const userMongooseSchema: Schema = new Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
