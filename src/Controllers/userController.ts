@@ -99,6 +99,7 @@ export default class UserController {
           fullName: req.body.fullName,
           email: req.body.email,
           password: req.body.password,
+          userRole: req.body.userRole,
         },
         { new: true }
       );

@@ -12,8 +12,8 @@ export interface Message {
 export interface MessageDocument extends Message, Document {}
 const messageSchema = Joi.object({
   fullName: Joi.string().required(),
-  email: Joi.string().email().required(),
-  messageContent: Joi.string().min(200).required(),
+  email: Joi.string().email().lowercase().required(),
+  messageContent: Joi.string().min(10).required(),
   date: Joi.string().default(new Date().toUTCString()),
 });
 

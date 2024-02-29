@@ -6,9 +6,9 @@ export default class MessageController {
   // ===================================================
   static async sendMessage(req: Request, res: Response) {
     try {
-      const valid = validateMessage(req.body);
-      if (valid.error) {
-        return res.status(400).send(valid.error);
+      const { error } = validateMessage(req.body);
+      if (error) {
+        return res.status(400).send(error.details[0].message);
       }
 
       const newmessage = new Message({
@@ -54,7 +54,11 @@ export default class MessageController {
   static async findOneMessage(req: Request, res: Response) {
     try {
       const message = await Message.findById(req.params.id);
-      return res.status(200).json(message);
+      if (message) {
+        return res.status(200).json(message);
+      } else {
+        return res.status(404).json({ message: "message not found" });
+      }
     } catch (err) {
       return res.status(500).json(err);
     }
@@ -64,10 +68,13 @@ export default class MessageController {
   static async findAllMessage(req: Request, res: Response) {
     try {
       const messages = await Message.find();
-
-      return res.status(200).json({
-        data: messages,
-      });
+      if (messages) {
+        return res.status(200).json({
+          data: messages,
+        });
+      } else {
+        return res.status(404).json({ message: "No messages found" });
+      }
     } catch (err) {
       return res.status(500).json(err);
     }

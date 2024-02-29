@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Blog from "../Models/blogModel";
 import User, { UserDocument } from "../Models/userModel";
-import { validateComment } from "../Models/blogModel";
+// import { validateComment } from "../Models/blogModel";
 declare global {
   namespace Express {
     interface Request {
@@ -18,12 +18,15 @@ export default class CommentController {
       if (!blog) {
         return res.status(404).json({ message: "Blog not found" });
       }
-      const { error } = validateComment(req.body);
-      if (error) {
-        return res.status(400).send(error.details[0].message);
+      //   const { error } = validateComment(req.body);
+      //   if (error) {
+      //     return res.status(400).send(error.details[0].message);
+      //   }
+      if (!req.user) {
+        return res.status(404).json({ message: "pleas login required" });
       }
       const newcomment = {
-        fullName: req.body.fullName,
+        fullName: req.user.fullName,
         comment: req.body.comment,
       };
 

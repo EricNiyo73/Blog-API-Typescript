@@ -35,16 +35,16 @@ export const validateBlog = (data: Blog) => {
 //     cdate: Joi.string(),
 //   })
 // );
-const commentSchema = Joi.object({
-  comments: Joi.array().items({
-    fullName: Joi.string().required(),
-    comment: Joi.string().required(),
-    date: Joi.string(),
-  }),
-});
-export const validateComment = (data: Comment) => {
-  return commentSchema.validate(data);
-};
+// const commentSchema = Joi.object({
+//   comments: Joi.array().items({
+//     fullName: Joi.string().required(),
+//     comment: Joi.string().required(),
+//     date: Joi.string(),
+//   }),
+// });
+// export const validateComment = (data: Comment) => {
+//   return commentSchema.validate(data);
+// };
 export interface BlogDocument extends Blog, Comment, Document {}
 
 const blogMongooseSchema = new Schema<BlogDocument>({

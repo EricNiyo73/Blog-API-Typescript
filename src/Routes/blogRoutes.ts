@@ -2,10 +2,17 @@ import Router from "express";
 const router = Router();
 import { fileUpload } from "../helpers/multer";
 import authentication from "../Middlewares/mustHaveAccount";
+import admin from "../Middlewares/checkAdmin";
+
 import BlogController from "../Controllers/BlogController";
-router.post("/create", fileUpload.single("image"), BlogController.createblog);
+router.post(
+  "/create",
+  admin,
+  fileUpload.single("image"),
+  BlogController.createblog
+);
 router.get("/", BlogController.findAllBlog);
 router.get("/:id", BlogController.findOneBlog);
-router.put("/:id", fileUpload.single("image"), BlogController.updateT);
-router.delete("/:id", authentication, BlogController.deleteT);
+router.put("/:id", admin, fileUpload.single("image"), BlogController.updateT);
+router.delete("/:id", admin, BlogController.deleteT);
 export default router;
