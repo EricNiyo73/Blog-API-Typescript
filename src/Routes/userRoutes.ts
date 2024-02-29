@@ -6,6 +6,6 @@ router.post("/login", UserController.login);
 router.delete("/:id", UserController.deleteT);
 router.put("/:id", UserController.updateT);
 router.get("/:id", UserController.findOneUser);
-router.get("/login", UserController.findAllUser);
+router.get("/", UserController.findAllUser);
 
 export default router;

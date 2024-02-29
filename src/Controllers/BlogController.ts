@@ -100,7 +100,11 @@ export default class BlogController {
       return res.status(500).json(err);
     }
   }
-
+  //deleteMany
+  static async deleteMany(req: Request, res: Response) {
+    const data = await Blog.deleteMany();
+    return res.status(200).json(data);
+  }
   //GET Blog
   static async findOneBlog(req: Request, res: Response) {
     try {
@@ -115,7 +119,6 @@ export default class BlogController {
   static async findAllBlog(req: Request, res: Response) {
     try {
       const blogs = await Blog.find();
-
       return res.status(200).json({
         data: blogs,
       });
