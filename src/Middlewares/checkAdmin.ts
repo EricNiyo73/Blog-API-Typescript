@@ -38,7 +38,7 @@ const checkAdmin = async (
     } else {
       return res
         .status(401)
-        .json({ message: "You are not allwed to perform this action" });
+        .json({ message: "You are not allowed to perform this action" });
     }
   } catch (err: any) {
     if (err.name === "TokenExpiredError") {

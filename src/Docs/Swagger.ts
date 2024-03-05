@@ -13,7 +13,7 @@ const options = {
       description: "API documentation of MY BRAND BACKEND",
       contact: {
         name: "Mr Eric",
-        email: "ericnemachie@gmail.com",
+        email: "ericnemachine@gmail.com",
       },
     },
     components: {

@@ -42,7 +42,7 @@ app.use("/api/users", userRoute);
 app.use("/api/blogs", BlogRoute);
 app.use("/api/messages", MessageRoute);
 app.use("/api/com/like", CommentRoute);
-// const PORT = process.env.PORT_TEST || 6000;
-// app.listen(PORT);
+const PORT = process.env.PORT_TEST || 6000;
+app.listen(PORT);
 
 export default app;
