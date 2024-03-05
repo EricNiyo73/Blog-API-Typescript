@@ -92,7 +92,7 @@ export default class BlogController {
   static async findOneBlog(req: Request, res: Response) {
     const blog = await Blog.findById(req.params.id);
     if (blog) {
-      return res.status(200).json(blog);
+      return res.status(200).json({ data: blog });
     } else {
       return res.status(400).json({ message: "Id of a Blog not found" });
     }
