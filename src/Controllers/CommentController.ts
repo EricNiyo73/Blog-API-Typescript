@@ -13,31 +13,23 @@ export default class CommentController {
   static async addComment(req: Request, res: Response) {
     const blogId = req.params.blogId as any;
 
-    try {
-      const blog = await Blog.findById(blogId);
-      if (!blog) {
-        return res.status(404).json({ message: "Blog not found" });
-      }
-      //   const { error } = validateComment(req.body);
-      //   if (error) {
-      //     return res.status(400).send(error.details[0].message);
-      //   }
-      if (!req.user) {
-        return res.status(404).json({ message: "pleas login required" });
-      }
-      const newcomment = {
-        fullName: req.user.fullName,
-        comment: req.body.comment,
-      };
-
-      blog.comments.push(newcomment);
-      const newcom = await blog.save();
-
-      return res.status(201).json(newcom);
-    } catch (err) {
-      console.error("Error adding comment:", err);
-      return res.status(500).json({ message: "Internal Server Error" });
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
     }
+
+    if (!req.user) {
+      return res.status(404).json({ message: "pleas login required" });
+    }
+    const newcomment = {
+      fullName: req.user.fullName,
+      comment: req.body.comment,
+    };
+
+    blog.comments.push(newcomment);
+    const newcom = await blog.save();
+
+    return res.status(201).json(newcom);
   }
 
   //   ==============================likes==================

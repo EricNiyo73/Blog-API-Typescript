@@ -2,34 +2,33 @@
  * @swagger
  * /api/com/like/add-comment/{blogId}:
  *   post:
- *     summary: Add a comment to a blog
+ *     summary: Add a comment to a blog.
  *     tags: [Comments]
  *     parameters:
  *       - in: path
  *         name: blogId
+ *         required: true
+ *         description: ID of the blog to add the comment to.
  *         schema:
  *           type: string
- *         required: true
- *         description: ID of the blog to add a comment to
- *       - in: body
- *         name: comment
- *         required: true
- *         description: Comment object
- *         schema:
- *           type: object
- *           properties:
- *             comment:
- *               type: string
- *               description: The comment content
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               comment:
+ *                 type: string
  *     responses:
- *       "201":
- *         description: Comment added successfully
- *       "400":
- *         description: Invalid request body
- *       "404":
- *         description: Blog not found
- *       "500":
- *         description: Internal server error
+ *       '201':
+ *         description: Comment added successfully.
+ *       '400':
+ *         description: Invalid request data.
+ *       '404':
+ *         description: Blog not found.
+ *       '500':
+ *         description: Internal Server Error.
  */
 
 // ================================================================

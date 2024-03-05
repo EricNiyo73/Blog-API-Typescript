@@ -15,5 +15,4 @@ router.get("/", BlogController.findAllBlog);
 router.get("/:id", BlogController.findOneBlog);
 router.put("/:id", admin, fileUpload.single("image"), BlogController.updateT);
 router.delete("/:id", admin, BlogController.deleteT);
-router.delete("/many", BlogController.deleteMany);
 export default router;

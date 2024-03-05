@@ -138,79 +138,49 @@
 // =============================update users=========================
 /**
  * @swagger
- *
  * /api/users/{id}:
-  *   put:
- *     summary: Update an user by ID
- *     tags: [users]
- *     description: Update an existing user with new data.
+ *   put:
+ *     summary: Update a user.
  *     parameters:
  *       - in: path
  *         name: id
+ *         required: true
+ *         description: ID of the user to update.
  *         schema:
  *           type: string
- *         required: true
- *         description: The ID of the user to update.
+ *     tags:
+ *       - A user
  *     requestBody:
  *       required: true
- *       description: The updated user data, including an password file.
  *       content:
- *         multipart/form-data:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
  *               fullName:
  *                 type: string
- *                 description: The updated userfullName of the user.
- *               email: 
+ *               email:
  *                 type: string
- *                 description: The updated email of the user.
+ *                 format: email
  *               password:
  *                 type: string
- *                 format: binary
- *                 description: An updated password file for the user.
+ *               userRole:
+ *                 type: string
  *     responses:
- *       200:
- *         description: OK. Returns the updated user.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 _id:
- *                   type: string
- *                   description: The ID of the updated user.
- *                 fullName:
- *                   type: string
- *                   description: The updated name of the user.
- *                 date:
- *                   type: string
- *                   format: date-time
- *                   description: The updated date and time of the user.
-
- *                 email:
- *                   type: string
- *                   description: The updated email of the user.
- *                 password:
- *                   type: string
- *                   description: The URL of the updated password file for the user.
- *       500:
- *         description: Internal Server Error. Something went wrong on the server.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 user:
- *                   type: string
- *                   description: A user describing the error.
+ *       '200':
+ *         description: User updated successfully.
+ *       '400':
+ *         description: Invalid request data.
+ *       '404':
+ *         description: User not found.
+ *       '500':
+ *         description: Internal Server Error.
  */
-
 // ======================delete========================
 
 /**
  * @swagger
- * /api/user/{id}:
+ * /api/users/{id}:
  *   delete:
  *     summary: Delete a user by ID
  *     description: Deletes a user based on their ID. Only the user who owns the account can delete their account.

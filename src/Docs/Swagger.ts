@@ -10,7 +10,7 @@ const options = {
     info: {
       title: "Blog API",
       version: "1.0.0",
-      description: "API documentation for the Blog application",
+      description: "API documentation of MY BRAND BACKEND",
       contact: {
         name: "Mr Eric",
         email: "ericnemachie@gmail.com",
@@ -35,6 +35,7 @@ const options = {
     servers: [
       {
         url: "http://localhost:3000",
+        description: "Development server",
       },
     ],
   },

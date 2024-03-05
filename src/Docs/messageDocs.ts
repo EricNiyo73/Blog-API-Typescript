@@ -21,7 +21,7 @@
  *       required:
  *         - fullName
  *         - email
- *         - message
+ *         - messageContent
  */
 
 /**
@@ -44,7 +44,7 @@
  *                 type: string
  *               email:
  *                 type: string
- *               message:
+ *               messageContent:
  *                 type: string
  *     responses:
  *       '201':
@@ -63,8 +63,6 @@
  *                       type: object
  *       '400':
  *         description: Invalid email format
- *       '409':
- *         description: Email already exists
  *       '500':
  *         description: Unexpected error
  */
@@ -88,34 +86,6 @@
  *               type: array
  *       '500':
  *         description: Unexpected error
- */
-// =============================update messages=========================
-/**
- * @swagger
- *
- * /api/messages/{id}:
- *   put:
- *     summary: Update message
- *     description: Update message with the given ID.
- *     tags: [message]
- *     parameters:
- *       - in: path
- *         name: id
- *         description: ID of the message to update
- *         required: true
- *         schema:
- *           type: string
- *       - in: body
- *         name: message
- *         description: The message object to update
- *         required: true
- *     responses:
- *       200:
- *         description: The updated message
- *       401:
- *         description: Unauthorized
- *       500:
- *         description: Internal server error
  */
 
 // ======================delete========================
@@ -172,7 +142,7 @@
  *       200:
  *         description: Returns the messages item with the specified ID
  *         schema:
- *           $ref: '#/definitions/messages'
+ *           $ref: '#/definitions/messageModel'
  *       404:
  *         description: messages item not found
  *       500:
