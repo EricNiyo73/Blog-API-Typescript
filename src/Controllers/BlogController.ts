@@ -37,7 +37,7 @@ export default class BlogController {
     });
     const savedBlog = await newBlog.save();
     return res.status(201).json({
-      savedBlog,
+      data: savedBlog,
       message: "Your Blog was successfully added",
     });
   }
