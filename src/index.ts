@@ -6,7 +6,7 @@ import mongoose, { ConnectOptions } from "mongoose";
 import userRoute from "./Routes/userRoutes";
 import BlogRoute from "./Routes/blogRoutes";
 import CommentRoute from "./Routes/commentRoutes";
-
+import SubscribersRoute from "./Routes/subscriberRoutes";
 import MessageRoute from "./Routes/messageRoutes";
 import bodyParser from "body-parser";
 import swaggerRouter from "./Docs/Swagger";
@@ -43,6 +43,7 @@ app.use("/api/users", userRoute);
 app.use("/api/blogs", BlogRoute);
 app.use("/api/messages", MessageRoute);
 app.use("/api/com/like", CommentRoute);
+app.use("/api/subscribe", SubscribersRoute);
 app.use("/api/docs", swaggerRouter);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

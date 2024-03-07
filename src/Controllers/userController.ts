@@ -37,6 +37,8 @@ export default class UserController {
       return res.status(200).json({
         message: "Logged in successfully",
         token: token,
+        UserRole: user.userRole,
+        fullName: user.fullName,
       });
     }
   }
@@ -91,13 +93,15 @@ export default class UserController {
         message: "Id of a User not found",
       });
     }
+    const { fullName, email, password, userRole } = req.body;
+
     const updatedUser = await User.findByIdAndUpdate(
       { _id: UserId },
       {
-        fullName: req.body.fullName,
-        email: req.body.email,
-        password: hashedpassword,
-        userRole: req.body.userRole,
+        fullName: fullName ? req.body.fullName : user.fullName,
+        email: email ? req.body.email : user.email,
+        password: password ? hashedpassword : user.password,
+        userRole: userRole ? req.body.userRole : user.userRole,
       },
       { new: true }
     );
