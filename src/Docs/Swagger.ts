@@ -34,7 +34,7 @@ const options = {
     ],
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "https://my-brand-backend-ts.onrender.com",
         description: "Development server",
       },
     ],
