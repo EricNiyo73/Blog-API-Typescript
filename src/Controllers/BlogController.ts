@@ -55,11 +55,12 @@ export default class BlogController {
     if (req.file) {
       result = await cloudinary.uploader.upload(req.file.path);
     }
+    const { title, description } = req.body;
     const updatedBlog = await Blog.findByIdAndUpdate(
       { _id: BlogId },
       {
-        title: req.body.title,
-        description: req.body.description,
+        title: title ? req.body.title : blog.title,
+        description: description ? req.body.description : blog.description,
         image: result ? result.secure_url : blog.image,
       },
       { new: true }

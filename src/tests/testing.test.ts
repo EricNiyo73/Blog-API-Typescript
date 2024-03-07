@@ -261,7 +261,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "testkdf@test.com",
+      email: "testrtyy@test.com",
       password: "password",
     });
 
@@ -272,7 +272,7 @@ describe("POST /api/users/signup", () => {
   it("should return 409 Email  already exists", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "testk@test.com",
+      email: "testrt@test.com",
       password: "password",
     });
 
@@ -419,7 +419,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "Testznm blog",
+      title: "Testzujjkkkk blog",
       description: "test desc blog",
       image: "testImage.png",
     };
@@ -571,8 +571,19 @@ describe(" messages api testing", () => {
     messageContent: "Test message content",
   });
   message.save();
+  const users = new User({
+    email: "messager@test.com",
+    fullName: "test",
+    password: "password",
+    userRole: "admin",
+  });
+  users.save();
+
+  let adminT = jwt.sign({ id: users._id }, process.env.JWT_SECRET || "", {
+    expiresIn: "20h",
+  });
   let mtoken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTVjYWUxZDRlNTNmZWVmZTUyM2ZlYSIsImlhdCI6MTcwOTU1ODQ5NywiZXhwIjoxNzA5OTkwNDk3fQ.BD_w7V19jz1vzT2GzTe45F1XAj1RY3ARwnaoixyBgCE";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTAyMTk0ZWE0NDU3NDI4N2UxNTQxZSIsImlhdCI6MTcwOTc5OTM0NSwiZXhwIjoxNzA5ODg1NzQ1fQ.sdRWAR8A_R1keFCGPjM9drPgtVW06AuYaSqoqEd88iE";
   it("should  add a message and return success ", async () => {
     const newMessage = {
       fullName: "Test yyhhykkmessage",
@@ -597,25 +608,25 @@ describe(" messages api testing", () => {
   it("should  retrieve all  messages and return success ", async () => {
     const res = await request
       .get("/api/messages")
-      .set("Authorization", ` ${mtoken}`);
+      .set("Authorization", ` ${adminT}`);
     expect(res.status).toEqual(200);
   });
   it("should retrieve a single message and return success ", async () => {
     const res = await request
       .get(`/api/messages/${message._id}`)
-      .set("Authorization", `${mtoken}`);
+      .set("Authorization", `${adminT}`);
     expect(res.status).toEqual(200);
   });
   it("should  delete a message and return success ", async () => {
     const res = await request
       .delete(`/api/messages/${message._id}`)
-      .set("Authorization", ` ${mtoken}`);
+      .set("Authorization", ` ${adminT}`);
     expect(res.status).toEqual(204);
   });
   it("should return 404 if id to be returned not found", async () => {
     const res = await request
       .get(`/api/messages/${message._id}`)
-      .set("Authorization", ` ${mtoken}`);
+      .set("Authorization", ` ${adminT}`);
     expect(res.status).toEqual(400);
     expect(res.body).toEqual({
       message: "message not found",
@@ -624,11 +635,12 @@ describe(" messages api testing", () => {
   it("should return 404 if id tobe deleted not found", async () => {
     const res = await request
       .delete(`/api/messages/${message._id}`)
-      .set("Authorization", ` ${mtoken}`);
+      .set("Authorization", ` ${adminT}`);
     expect(res.status).toEqual(400);
     expect(res.body).toEqual({
       message: "Id of a message not found",
     });
+    await User.findByIdAndDelete(users._id);
   });
 });
 describe("Comment and like api testing", () => {
