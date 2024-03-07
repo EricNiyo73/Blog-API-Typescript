@@ -29,7 +29,9 @@ export default class CommentController {
     blog.comments.push(newcomment);
     const newcom = await blog.save();
 
-    return res.status(201).json(newcom);
+    return res
+      .status(201)
+      .json({ newcom, message: "Comment added successfully" });
   }
 
   //   ==============================likes==================
