@@ -419,7 +419,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "Testzujjkkkk blog",
+      title: "Testzujjkkkkli blog",
       description: "test desc blog",
       image: "testImage.png",
     };

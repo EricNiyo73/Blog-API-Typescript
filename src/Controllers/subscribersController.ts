@@ -9,7 +9,10 @@ export default class subscriberController {
     if (error) {
       return res.status(400).send(error.details[0].message);
     }
-
+    const subscribe = await Subscriber.findOne({ email: req.body.email });
+    if (subscribe) {
+      return res.status(409).json({ message: " you have already subscribed" });
+    }
     const newsubscriber = new Subscriber({
       email: req.body.email,
     });
