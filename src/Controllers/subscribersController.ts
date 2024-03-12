@@ -24,22 +24,6 @@ export default class subscriberController {
     });
   }
 
-  static async deleteSub(req: Request, res: Response) {
-    const id = req.params.id;
-
-    const subscriber = await Subscriber.findById(id);
-    if (!subscriber) {
-      return res.status(400).json({
-        message: "Id of a subscriber not found",
-      });
-    } else {
-      await Subscriber.findByIdAndDelete(id);
-      return res.status(204).json({
-        message: "subscriber deleted ............",
-      });
-    }
-  }
-
   static async findAllsubscriber(req: Request, res: Response) {
     const subscribers = await Subscriber.find();
     return res.status(200).json({

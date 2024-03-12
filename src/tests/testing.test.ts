@@ -218,7 +218,9 @@ describe("POST /api/users/signup", () => {
     userRole: "admin",
   });
   users.save();
-
+  let adminT = jwt.sign({ id: users._id }, process.env.JWT_SECRET || "", {
+    expiresIn: "20h",
+  });
   it("should return 400 if email is missing", async () => {
     const res = await request
       .post("/api/users/signup")
@@ -290,7 +292,9 @@ describe("POST /api/users/signup", () => {
     expect(res.body).toHaveProperty("data");
   });
   it("should get a user", async () => {
-    const res = await request.get(`/api/users`);
+    const res = await request
+      .get(`/api/users`)
+      .set("Authorization", `${adminT}`);
     expect(res.status).toEqual(200);
     expect(res.body).toHaveProperty("data");
     // expect(res.body).toHaveProperty("message");
