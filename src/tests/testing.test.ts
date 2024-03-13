@@ -73,7 +73,7 @@ describe("Auth Middleware", () => {
 
   it("should return 401 if user not found after decoding a token", async () => {
     const tokens =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTc4MDg0NmFhZGY3YWU5OTliZmNiOSIsImlhdCI6MTcwOTY3MDU0MiwiZXhwIjoxNzA5NzU2OTQyfQ.p39Bb0rkpR2XO3rDSEu-R44fNV7Fnq0rBUseDvkPJpc";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjEzNzAyOTRlNzRiNWNkODM4N2IxZCIsImlhdCI6MTcxMDMwNzA3NSwiZXhwIjoxNzEwNzM5MDc1fQ.ujgMs7Y3BV6-E9gc6lNGrAkeZaKQ7k9G0RgJI2XdBWk";
     req.headers = { authorization: tokens };
     await authMiddleware(req as Request, res as Response, next);
     expect(res.status).toHaveBeenCalledWith(401);
@@ -263,7 +263,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "testrtyy@test.com",
+      email: "testrtyykk@test.com",
       password: "password",
     });
 
@@ -357,7 +357,7 @@ describe("POST /api/users/login", () => {
 
   it("should log in a user", async () => {
     const res = await request.post("/api/users/login").send({
-      email: "test3@test.com",
+      email: "testrtyy@test.com",
       password: "password",
     });
 
