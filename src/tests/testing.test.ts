@@ -158,7 +158,7 @@ describe("Admin Middleware", () => {
 
   it("should set req.user if token is valid and user is admin", async () => {
     const users = new User({
-      email: "testf@test.com",
+      email: "i@test.com",
       fullName: "test",
       password: "password",
       userRole: "admin",
@@ -263,7 +263,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "testrtyykk@test.com",
+      email: "testropk@test.com",
       password: "password",
     });
 
@@ -357,7 +357,7 @@ describe("POST /api/users/login", () => {
 
   it("should log in a user", async () => {
     const res = await request.post("/api/users/login").send({
-      email: "testrtyy@test.com",
+      email: "testf@test.com",
       password: "password",
     });
 
@@ -423,7 +423,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "Testzu blog",
+      title: "Testzoooo blog",
       description: "test desc blog",
       image: "testImage.png",
     };
