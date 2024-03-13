@@ -29,7 +29,6 @@ mongoose
   })
   .catch((err) => {
     console.log("Something went wrong", err);
-    process.exit(1);
   });
 
 app.use(cors());

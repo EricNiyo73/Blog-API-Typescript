@@ -24,8 +24,8 @@ beforeAll((done) => {
   server.listen(7000, done);
 });
 
-afterAll(() => mongoose.connection.close());
 afterAll((done) => {
+  mongoose.connection.close(done);
   server.close(done);
 });
 describe("Auth Middleware", () => {
