@@ -6,7 +6,7 @@
     "test": "jest  ./src/tests/testing.test.ts --detectOpenHandles",
     "dev": "ts-node-dev --pretty --respawn ./src/index.ts",
     "start": "nodemon ./src/index.ts",
-    "coveralls": "jest ./src/tests/testing.test.ts --coverage  && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "jest ./src/tests/testing.test.ts --coverage --forceExit --detectOpenHandles && cat ./coverage/lcov.info | coveralls"
   },
   "author": "",
   "license": "ISC",
