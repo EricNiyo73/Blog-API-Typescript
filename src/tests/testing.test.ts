@@ -83,7 +83,7 @@ describe("Auth Middleware", () => {
   });
   it("should set req.user if token is valid", async () => {
     const users = new User({
-      email: "valid1@test.com",
+      email: "valid2@test.com",
       fullName: "test",
       password: "password",
     });
@@ -263,7 +263,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "testropkkl@test.com",
+      email: "testropkkffl@test.com",
       password: "password",
     });
 
@@ -423,7 +423,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "Testzooookkl blog",
+      title: "Testzooookklhh blog",
       description: "test desc blog",
       image: "testImage.png",
     };

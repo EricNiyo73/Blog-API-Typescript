@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest  ./src/tests/testing.test.ts --detectOpenHandles",
     "dev": "ts-node-dev --pretty --respawn ./src/index.ts",
-    "start": "nodemon ./src/index.ts"
+    "start": "nodemon ./src/index.ts",
+    "coveralls": "jest ./src/tests/testing.test.ts --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "author": "",
   "license": "ISC",
@@ -14,8 +15,11 @@
     "@types/nodemailer": "^6.4.14",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "check-code-coverage": "^1.10.5",
     "cloudinary": "^2.0.1",
     "cors": "^2.8.5",
+    "coveralls": "^3.1.1",
+    "coveralls-next": "^4.2.0",
     "dotenv": "^16.4.5",
     "helmet": "^7.1.0",
     "joi": "^17.12.2",
