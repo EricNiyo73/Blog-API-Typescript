@@ -15,6 +15,7 @@ import fs from "fs";
 import path from "path";
 const request = supertest(app);
 import { createServer, Server } from "http";
+import mongoose from "mongoose";
 
 let server: Server;
 
@@ -23,6 +24,7 @@ beforeAll((done) => {
   server.listen(7000, done);
 });
 
+afterAll(() => mongoose.connection.close());
 afterAll((done) => {
   server.close(done);
 });
