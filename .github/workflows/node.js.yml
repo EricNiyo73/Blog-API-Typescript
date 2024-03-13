@@ -13,6 +13,8 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+
 env:
   PORT: ${{secrets.PORT}}
   PORT_TEST: ${{secrets.PORT_TEST}}
