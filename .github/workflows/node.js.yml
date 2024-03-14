@@ -25,6 +25,7 @@ env:
   JWT_SECRET: ${{secrets.JWT_SECRET}}
   JWT_EXPIRES_IN: ${{secrets.JWT_EXPIRES_IN}}
   MONGO_URL: ${{secrets.MONGO_URL}}
+  COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 
 jobs:
   tests:
