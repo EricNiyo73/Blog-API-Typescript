@@ -84,7 +84,7 @@ describe("Auth Middleware", () => {
   });
   it("should set req.user if token is valid or verfied", async () => {
     const users = new User({
-      email: "valid7@test.com",
+      email: "valid90@test.com",
       fullName: "test",
       password: "password",
     });
@@ -264,7 +264,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "tokyogkkop@test.com",
+      email: "tokyogkkopppp@test.com",
       password: "password",
     });
 
@@ -424,7 +424,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "testTokyohkkop blog",
+      title: "testTokyohkkopkkkk blog",
       description: "test desc blog",
       image: "testImage.png",
     };
