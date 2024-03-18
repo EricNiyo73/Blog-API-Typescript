@@ -38,34 +38,29 @@ export default class CommentController {
   static async likeBlog(req: Request, res: Response) {
     const blogId = req.params.blogId;
 
-    try {
-      const blog = await Blog.findById(blogId);
+    const blog = await Blog.findById(blogId);
 
-      if (!blog) {
-        return res.status(404).json({ message: "Blog not found" });
-      }
-      if (!req.user) {
-        return res.status(401).json({ message: "pleas login required" });
-      }
-      const userId = req.user.id;
-      const userIndex = blog.likedBy.indexOf(userId);
-
-      if (userIndex !== -1) {
-        blog.likes--;
-        blog.likedBy.splice(userIndex, 1);
-      } else {
-        blog.likes++;
-        blog.likedBy.push(userId);
-      }
-
-      await blog.save();
-
-      return res
-        .status(200)
-        .json({ message: "Blog like/unlike", likes: blog.likes });
-    } catch (error) {
-      console.error("Error toggling like:", error);
-      return res.status(500).json({ message: "Internal server error" });
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
     }
+    if (!req.user) {
+      return res.status(401).json({ message: "pleas login required" });
+    }
+    const userId = req.user.id;
+    const userIndex = blog.likedBy.indexOf(userId);
+
+    if (userIndex !== -1) {
+      blog.likes--;
+      blog.likedBy.splice(userIndex, 1);
+    } else {
+      blog.likes++;
+      blog.likedBy.push(userId);
+    }
+
+    await blog.save();
+
+    return res
+      .status(200)
+      .json({ message: "Blog like/unlike", likes: blog.likes });
   }
 }

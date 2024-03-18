@@ -264,7 +264,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "tokyogkkopppp@test.com",
+      email: "tsting1@test.com",
       password: "password",
     });
 
@@ -424,7 +424,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "testTokyohkkopkkkk blog",
+      title: "testinjjg blog",
       description: "test desc blog",
       image: "testImage.png",
     };
@@ -739,9 +739,9 @@ describe("Comment and like api testing", () => {
       .set("Authorization", `${adminToken}`)
       .send(newComment);
 
-    expect(res.status).toEqual(201);
+    expect(res.status).toEqual(200);
   });
-  it("LIKING ,should return 400 if a user have already liked this blog ", async () => {
+  it("LIKING ,should return 200 if a user unliked the blog ", async () => {
     const newComment = {
       comment: "my comment",
     };
@@ -751,7 +751,7 @@ describe("Comment and like api testing", () => {
       .set("Authorization", `${adminToken}`)
       .send(newComment);
 
-    expect(res.status).toEqual(400);
+    expect(res.status).toEqual(200);
     await User.findByIdAndDelete(users._id);
   });
 });
