@@ -84,7 +84,7 @@ describe("Auth Middleware", () => {
   });
   it("should set req.user if token is valid or verfied", async () => {
     const users = new User({
-      email: "valid90@test.com",
+      email: "valid9u0@test.com",
       fullName: "test",
       password: "password",
     });
@@ -264,7 +264,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "tsting1@test.com",
+      email: "tsting5@test.com",
       password: "password",
     });
 
@@ -424,7 +424,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "testinjjg blog",
+      title: "testinjblog",
       description: "test desc blog",
       image: "testImage.png",
     };
@@ -654,7 +654,7 @@ describe("Comment and like api testing", () => {
   const ftoken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTVjYWUxZDRlNTNmZWVmZTUyM2ZlYSIsImlhdCI6MTcwOTU1ODQ5NywiZXhwIjoxNzA5OTkwNDk3fQ.BD_w7V19jz1vzT2GzTe45F1XAj1RY3ARwnaoixyBgCB";
   const users = new User({
-    email: "testcommentor1@test.com",
+    email: "testcommentor3@test.com",
     fullName: "test",
     password: "password",
     userRole: "admin",
