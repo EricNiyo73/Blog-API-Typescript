@@ -276,7 +276,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "tsting5@test.com",
+      email: "tsting0@test.com",
       password: "password",
     });
 
@@ -436,7 +436,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "testinjblog",
+      title: "testinjblogblog",
       description: "test desc blog",
       image: "testImage.png",
     };
