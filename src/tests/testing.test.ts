@@ -27,6 +27,18 @@ beforeAll((done) => {
 afterAll((done) => {
   server.close(done);
 });
+afterAll(async () => {
+  try {
+    // Connection to Mongo killed.
+    await mongoose.disconnect();
+  } catch (error) {
+    console.log(`
+        You did something wrong dummy!
+        ${error}
+      `);
+    throw error;
+  }
+});
 describe("Auth Middleware", () => {
   let req: Partial<Request>;
   let res: Partial<Response>;
