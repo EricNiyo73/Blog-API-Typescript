@@ -96,7 +96,7 @@ describe("Auth Middleware", () => {
   });
   it("should set req.user if token is valid or verfied", async () => {
     const users = new User({
-      email: "valid9u0@test.com",
+      email: "valider@test.com",
       fullName: "test",
       password: "password",
     });
@@ -276,7 +276,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "tsting0gghh@test.com",
+      email: "testedaswell@test.com",
       password: "password",
     });
 
@@ -431,12 +431,10 @@ describe("Blogs api testing", () => {
   let adminT = jwt.sign({ id: users._id }, process.env.JWT_SECRET || "", {
     expiresIn: "20h",
   });
-  // let token =
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTVjYWUxZDRlNTNmZWVmZTUyM2ZlYSIsImlhdCI6MTcwOTU1ODQ5NywiZXhwIjoxNzA5OTkwNDk3fQ.BD_w7V19jz1vzT2GzTe45F1XAj1RY3ARwnaoixyBgCE";
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "testinjbloghhbhhlojjg",
+      title: "testedwell",
       description: "test desc blog",
       image: "testImage.png",
     };
@@ -545,6 +543,7 @@ describe("Blogs api testing", () => {
       .set("Authorization", ` ${adminT}`);
     expect(res.status).toEqual(204);
   });
+
   it("UPDATE ,updating a Blog with invalid id, ", async () => {
     const updateBlog = {
       title: "updated blog",
@@ -599,8 +598,7 @@ describe(" messages api testing", () => {
   let adminT = jwt.sign({ id: users._id }, process.env.JWT_SECRET || "", {
     expiresIn: "20h",
   });
-  let mtoken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTAyMTk0ZWE0NDU3NDI4N2UxNTQxZSIsImlhdCI6MTcwOTc5OTM0NSwiZXhwIjoxNzA5ODg1NzQ1fQ.sdRWAR8A_R1keFCGPjM9drPgtVW06AuYaSqoqEd88iE";
+
   it("should  add a message and return success ", async () => {
     const newMessage = {
       fullName: "Test yyhhykkmessage",
@@ -609,7 +607,6 @@ describe(" messages api testing", () => {
     };
 
     const res = await request.post("/api/messages/create").send(newMessage);
-
     expect(res.status).toEqual(201);
   });
 
