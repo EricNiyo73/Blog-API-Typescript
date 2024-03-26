@@ -86,7 +86,7 @@ describe("Auth Middleware", () => {
 
   it("should return 401 if user not found after decoding a token", async () => {
     const tokens =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjJhMWIyN2ExMjk2MGE1ZjdkYjg5NCIsImlhdCI6MTcxMDM5OTkyMiwiZXhwIjoxNzEwODMxOTIyfQ.uLXhFfXAnLPSR8MfcvfVn42kO5z6r8zTxTMYm1cr9dw";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmM4ZmNlN2E2MGYwZTY2NWViMjlmMiIsImlhdCI6MTcxMTQ3NDA0MiwiZXhwIjoxNzExNTYwNDQyfQ.NUzcKt9K4_2oRCM8wnMKtsCxPDydA_savo3UpAf6kj4";
     req.headers = { authorization: tokens };
     await authMiddleware(req as Request, res as Response, next);
     expect(res.status).toHaveBeenCalledWith(401);
@@ -96,7 +96,7 @@ describe("Auth Middleware", () => {
   });
   it("should set req.user if token is valid or verfied", async () => {
     const users = new User({
-      email: "valider@test.com",
+      email: "valider1@test.com",
       fullName: "test",
       password: "password",
     });
@@ -276,7 +276,7 @@ describe("POST /api/users/signup", () => {
   it("should POST a new user", async () => {
     const res = await request.post("/api/users/signup").send({
       fullName: "test",
-      email: "testedaswell@test.com",
+      email: "testedas@test.com",
       password: "password",
     });
 
@@ -434,7 +434,7 @@ describe("Blogs api testing", () => {
 
   it("should  add a blog and return success ", async () => {
     const newBlog = {
-      title: "testedwell",
+      title: "testedas",
       description: "test desc blog",
       image: "testImage.png",
     };
